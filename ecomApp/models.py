@@ -16,6 +16,8 @@ class User(AbstractUser):
     phone = models.CharField(max_length=15, validators=[validatePhone])
     address = models.TextField()
 
+    def __str__(self):
+        return f"{self.username}, system admin - {self.is_staff}"
 
 # Category model
 class Category(models.Model):
@@ -35,7 +37,7 @@ class Product(models.Model):
 
     # if products is sale
     is_sale = models.BooleanField(default=False)
-    sale_price = models.DecimalField(max_digits=10, decimal_places=2)
+    sale_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return self.name

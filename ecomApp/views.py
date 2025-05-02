@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from .models import *
 
 
 # index/home view
 def index(request):
-    return render(request, 'index.html')
+    products = Product.objects.all()
+    context = {'products': products}
+
+    return render(request, 'index.html', context=context)
