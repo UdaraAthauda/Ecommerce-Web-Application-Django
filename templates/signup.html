@@ -14,8 +14,8 @@
     </div>
 </header>
 
-<div class="container mt-4">
-    <form method="post" action="" class="p-4 m-5 bg-light rounded shadow text-center">
+<div class="container mt-4 mb-4" style="max-width: 800px; margin: 0 auto;">
+    <form method="post" action="" class="form-control p-4 rounded shadow text-center">
         {% csrf_token %}
         <div class="mb-3">
             {{ form.as_p }}

@@ -11,9 +11,11 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
+
 # about view
 def about(request):
     return render(request, 'about.html')
+
 
 # user login view
 def login_user(request):
@@ -36,6 +38,7 @@ def login_user(request):
     form = UserLoginForm()
     context = {'form': form}
     return render(request, 'login.html', context=context)
+
 
 # user signup/register view
 def signup_user(request):
@@ -62,7 +65,24 @@ def signup_user(request):
     context = {'form': form}
     return render(request, 'signup.html', context=context)
 
+
 # user logout view
 def logout_user(request):
     logout(request)
     return redirect('home')
+
+
+# single product display view
+def productDisplay(request, pk):
+    product = Product.objects.get(id=pk)
+    context = {'product': product}
+    return render(request, 'product.html', context=context)
+
+
+# product display filter by category
+def category(request, cat):
+    category = Category.objects.get(name=cat)
+    products = Product.objects.filter(category=category)
+    context = {'products': products, 'category': category}
+    return render(request, 'category.html', context=context)
+    
