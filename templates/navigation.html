@@ -26,4 +26,13 @@
             </form>
         </div>
     </div>
+    
+    {% if user.is_authenticated %}    
+    &nbsp;
+    <a href="{% url 'logout' %}" class="text-decoration-none me-auto">Logout</a>
+    {% else %}
+    &nbsp;
+    <a href="{% url 'login' %}" class="text-decoration-none me-auto">Login</a>
+    <a href="{% url 'signup' %}" class="text-decoration-none me-auto">Signup</a>
+    {% endif %}
 </nav>
