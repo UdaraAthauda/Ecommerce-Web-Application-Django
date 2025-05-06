@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ecomApp',
+    'cart',
 ]
 
 AUTH_USER_MODEL = 'ecomApp.User'
@@ -52,6 +53,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 # custom processor
                 'ecomApp.context_processors.categories_processor',
+                'ecomApp.context_processors.cart_item_count',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
