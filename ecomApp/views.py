@@ -68,7 +68,14 @@ def signup_user(request):
 
 # user logout view
 def logout_user(request):
+
+    cart_data = request.session.get('cart')
+
     logout(request)
+
+    if cart_data:
+        request.session['cart'] = cart_data
+
     return redirect('home')
 
 

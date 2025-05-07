@@ -1,3 +1,5 @@
+from ecomApp.models import Product
+
 class Cart():
     
     def __init__(self, request):
@@ -24,3 +26,8 @@ class Cart():
     def save(self):
         self.session.modified = True
     
+    def get_products(self):
+        product_ids = self.cart.keys()
+        products = Product.objects.filter(id__in=product_ids)
+
+        return products

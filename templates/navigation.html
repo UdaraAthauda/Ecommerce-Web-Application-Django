@@ -20,6 +20,7 @@
                     </ul>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
             <form class="d-flex">
                 <a href="{% url 'view_cart' %}" class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
@@ -27,6 +28,7 @@
                     <span class="badge bg-dark text-white ms-1 rounded-pill">{{item_count}}</span>
                 </a>
             </form>
+            {% endif %}
         </div>
     </div>
     

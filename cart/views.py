@@ -11,12 +11,9 @@ def add_to_cart(request, product_id):
 
 def view_cart(request):
     cart = Cart(request)
-    product_ids = cart.cart.keys()
-    product_ids_int = [int(pid) for pid in product_ids]
-    products = Product.objects.filter(id__in=product_ids_int)
-    item_count = len(product_ids_int)
-
-    context = {'products': products, 'item_count': item_count}
+    products = cart.get_products
+   
+    context = {'products': products}
     
     '''print("=== SESSION CART DATA ===")
     for product_id, item in cart.cart.items():
