@@ -11,8 +11,8 @@
                 <img src="{{product.image.url}}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
-                <div class="card-body">
-                    <h2 class="card-title text-center">{{product.name}}</h2><br>
+                <div class="card-body text-center">
+                    <h2 class="card-title">{{product.name}}</h2><br>
                     <p class="card-text">{{product.description}}</p>
 
                     
@@ -33,9 +33,17 @@
 
                     {% endif %}
 
-                    <br><br>
-                    <a href="{% url 'home' %}" class="btn btn-secondary text-center">Back</a>
-                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-secondary text-center">Add to cart</a>
+                    <br>
+                    <form method="POST" action="{% url 'add_to_cart' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <label>Quantity:</label>
+                        <input type="number" name="quantity" value="1" min="1" placeholder="Quantity: ">
+                        <br><br>
+                        <a href="{% url 'home' %}" class="btn btn-secondary text-center">Go back</a>
+                        &nbsp;
+                        <button type="submit" class="btn btn-secondary">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
