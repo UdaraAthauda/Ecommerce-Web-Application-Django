@@ -46,3 +46,9 @@ def update_cart(request):
                 pass
     
     return redirect('view_cart')
+
+# delete item from the shoping cart
+def delete_item(request, product_id):
+    cart = Cart(request)
+    cart.delete(product_id)
+    return redirect('view_cart')

@@ -35,6 +35,15 @@ class Cart():
 
         self.save()
 
+    # delete products from the shoping cart
+    def delete(self, product_id):
+        product_id = str(product_id)
+
+        if product_id in self.cart:
+            del self.cart[product_id]
+        
+        self.save()
+
     def save(self):
         self.session.modified = True
     

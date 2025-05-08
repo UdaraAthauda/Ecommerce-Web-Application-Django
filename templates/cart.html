@@ -51,13 +51,16 @@
                                         
                                     
                                 {% endfor %}
-                                <button type="submit" class="btn btn-outline-dark mt-auto">Update</button>
+                                <button type="submit" class="btn btn-outline-dark mt-2">Update</button>
                                 </form>
                         </div>
                     </div>
                     <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id %}">Checkout</a></div>
+                    <div class="card-footer p-3 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-success mt-auto" href="{% url 'product' product.id %}">Checkout</a>
+                            <a href="{% url 'delete_item' product.id %}" class="btn btn-outline-danger mt-auto" >Remove</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,15 +93,18 @@
                                     
                                 {% endfor %}
                                 
-                                <button type="submit" class="btn btn-outline-dark mt-auto">update</button>
+                                <button type="submit" class="btn btn-outline-dark mt-2">update</button>
                             
                             </form>
                                 
                         </div>
                     </div>
                     <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id %}">Checkout</a></div>
+                    <div class="card-footer p-3 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-success mt-auto" href="{% url 'product' product.id %}">Checkout</a>
+                            <a href="{% url 'delete_item' product.id %}" class="btn btn-outline-danger mt-auto" >Remove</a>
+                        </div>
                     </div>
                 </div>
             </div>
