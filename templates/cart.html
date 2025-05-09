@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load cart_item_total %}
  
 {% include 'navigation.html' %}
         
@@ -34,9 +35,18 @@
                         <div class="text-center">
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{product.name}}</h5>
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through">${{product.price}}</span>
-                            - ${{product.sale_price}}   
+                            
+                            <!-- Product total price calculation using templatetags -->
+                             
+                            {% for key, item in cart.cart.items %}
+                                
+                                {% if key == product.id|slugify %}
+
+                                    Total: ${{ product.sale_price|item_total:item.quantity }}
+                                    
+                                {% endif %}
+                                
+                            {% endfor %}  
                             
                             <br><br>
                             <form method="POST" action="{% url 'update_cart' %}">
@@ -76,8 +86,20 @@
                         <div class="text-center">
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{product.name}}</h5>
-                            <!-- Product price-->
-                            ${{product.price}}
+
+                            <!-- Product total price calculation using templatetags -->
+                             
+                             {% for key, item in cart.cart.items %}
+                                
+                                {% if key == product.id|slugify %}
+
+                                    Total: ${{ product.price|item_total:item.quantity }}
+                                    
+                                {% endif %}
+                                    
+                             {% endfor %}
+                                
+
                             <br><br>
                             
                             <form method="POST" action="{% url 'update_cart' %}">
