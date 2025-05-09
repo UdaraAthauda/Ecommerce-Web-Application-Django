@@ -25,8 +25,9 @@ def add_to_cart(request):
 def view_cart(request):
     cart = Cart(request)
     products = cart.get_products()
+    cart_total = cart.cart_total()
    
-    context = {'products': products, 'cart': cart}
+    context = {'products': products, 'cart': cart, 'cart_total': cart_total}
     
     return render(request, 'cart.html', context=context)
 

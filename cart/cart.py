@@ -53,3 +53,24 @@ class Cart():
         products = Product.objects.filter(id__in=product_ids)
 
         return products
+    
+    # shoping cart total price calculation
+    def cart_total(self):
+        product_ids = self.cart.keys()
+        products = Product.objects.filter(id__in=product_ids)
+
+        quantitys = self.cart
+        total = 0
+
+        for key, value in quantitys.items():
+            key = int(key)
+            quantity = value.get('quantity')
+            for product in products:
+                if product.id == key:
+                    if product.is_sale:
+                        total = total + (product.sale_price * quantity)
+                    else:
+                        total = total + (product.price * quantity)    
+        
+        return total
+
