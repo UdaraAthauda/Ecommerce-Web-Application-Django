@@ -65,6 +65,38 @@ def signup_user(request):
     context = {'form': form}
     return render(request, 'signup.html', context=context)
 
+# user detail update view
+def update_user(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+
+        form = UserUpdateForm(request.POST or None, instance=current_user)
+
+        if form.is_valid():
+            form.save()
+
+            login(request, current_user)
+            return redirect('update_user')
+        return render(request, 'update_user.html', context={'form': form})
+
+# user password change view
+def update_password(request):
+    if request.user.is_authenticated:
+        current_user = request.user
+
+        if  request.method == 'POST':
+            form = PasswordChangeForm(current_user, request.POST)
+
+            if form.is_valid():
+                form.save()
+                login(request, current_user)
+                return redirect('update_user')
+            else:
+                return render(request, 'update_password.html', context={'form': form})
+            
+        else:
+            form = PasswordChangeForm(current_user)
+            return render(request, 'update_password.html', context={'form': form})
 
 # user logout view
 def logout_user(request):

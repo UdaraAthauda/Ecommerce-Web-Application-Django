@@ -13,9 +13,11 @@
                         <li><a class="dropdown-item" href="{% url 'home' %}">All Products</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         
+                        <!-- display the category dropdown list using cotext_processor -->
                         {% for category in categories %}
                         <li><a class="dropdown-item" href="{% url 'category' category.name %}">{{ category.name }}</a></li>
                         {% endfor %}
+
                         <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                     </ul>
                 </li>
@@ -33,11 +35,22 @@
     </div>
     
     {% if user.is_authenticated %}    
-    &nbsp;
-    <a href="{% url 'logout' %}" class="text-decoration-none me-auto">Logout</a>
+    <div class="nav-item dropdown me-4" style="right: 0;">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'update_user' %}">View user profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
     {% else %}
-    &nbsp;
-    <a href="{% url 'login' %}" class="text-decoration-none me-auto">Login</a>
-    <a href="{% url 'signup' %}" class="text-decoration-none me-auto">Signup</a>
+    <div class="nav-item dropdown me-4" style="right: 0;">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">Signin options</a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'signup' %}">Signup</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </div>
     {% endif %}
 </nav>

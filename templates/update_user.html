@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'navigation.html' %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">User Profile</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Update your user profile</p>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-4 mb-4" style="max-width: 800px; margin: 0 auto;">
+    <form method="post" action="{% url 'update_user' %}" class="form-control p-4 rounded shadow text-center">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success col-2">Update</button>
+        &nbsp;
+        <a href="{% url 'update_password' %}" class="btn btn-secondary">Change password</a>
+    </form>
+</div>
+
+
+{% include 'footer.html' %}
+
+{% endblock %}
+    
