@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from cart.cart import Cart
+from django.db.models import Q
 
 
 # index/home view
@@ -106,7 +108,8 @@ def logout_user(request):
     logout(request)
 
     if cart_data:
-        request.session['cart'] = cart_data
+        cart = Cart(request)
+        cart.set_cart(cart_data)
 
     return redirect('home')
 
@@ -124,4 +127,15 @@ def category(request, cat):
     products = Product.objects.filter(category=category)
     context = {'products': products, 'category': category}
     return render(request, 'category.html', context=context)
+
+# product search option view
+def search(request):
+    if request.method == 'POST':
+        searched = request.POST.get('searched')
+        products = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
+        context = {'products': products}
+
+        return render(request, 'search.html',context=context)
+    else:
+        return render(request, 'search.html')
     

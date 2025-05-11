@@ -43,9 +43,6 @@ class Cart():
             del self.cart[product_id]
         
         self.save()
-
-    def save(self):
-        self.session.modified = True
     
     # retrieve the product ids from cart and filter the products from database
     def get_products(self):
@@ -73,4 +70,13 @@ class Cart():
                         total = total + (product.price * quantity)    
         
         return total
+    
+    # save cart in session after user logout
+    def set_cart(self, cart_data):
+        self.cart = cart_data
+        self.save()
 
+
+    def save(self):
+        self.session['cart'] = self.cart
+        self.session.modified = True
