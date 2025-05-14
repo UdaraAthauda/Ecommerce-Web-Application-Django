@@ -43,7 +43,7 @@ class Product(models.Model):
         return self.name
 
 
-# Order model
+'''# Order model
 class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -55,3 +55,4 @@ class Order(models.Model):
 
     def __str__(self):
         return self.product.name
+'''

@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecomApp',
     'cart',
+    'payment',
 ]
 
 AUTH_USER_MODEL = 'ecomApp.User'
