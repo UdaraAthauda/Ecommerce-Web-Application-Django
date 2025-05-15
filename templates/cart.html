@@ -135,6 +135,10 @@
 
             {% endfor %}
         </div>
+        <div align="right">
+            <small><strong>Total price: ${{cart_total}}</strong></small><br>
+            <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
+        </div>
     </div>
 </section>
 
