@@ -15,9 +15,9 @@
     </div>
 </header>
 
-<!-- Section-->
+<!-- Section -->
 <section class="py-5">
-    <div class="container mt-4 col-md-7">
+    <div class="container mt-2 col-md-7">
         <div class="card">
             <div class="card-header">
                 Order summary
@@ -48,8 +48,27 @@
                     <br><br>
                 {% endfor %}
 
-                <strong>Total price: ${{cart_total}}</strong><br>
-                <a href="{% url 'view_cart' %}" class="btn btn-sm btn-secondary">Update order</a>
+                <strong>Total price: ${{cart_total}}</strong><br><br>
+                <a href="{% url 'view_cart' %}" class="btn btn-sm btn-outline-secondary">Update order</a>
+                <div align="right">
+                    <a href="{% url 'process_order' %}" class="btn btn-secondary">Create order</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section -->
+<section class="mb-4">
+    <div class="container col-md-7">
+        <div class="card">
+            <div class="card-header">
+                Shipping details
+            </div>
+            <div class="card-body">
+                Shipping Address: <strong>{{shipping_detail.address}}</strong> <br><br>
+                Phone number: <strong>{{shipping_detail.phone}}</strong> <br><br>
+                <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">Update shipping detail</a>
             </div>
         </div>
     </div>
