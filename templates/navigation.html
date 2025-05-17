@@ -21,6 +21,9 @@
                         <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                     </ul>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'orders' %}">Orders</a></li>
+                {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'search' %}">Search</a></li>
             </ul>
             {% if user.is_authenticated %}

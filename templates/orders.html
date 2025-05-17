@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load cart_item_total %}
+ 
+{% include 'navigation.html' %}
+        
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Orders</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Review your orders</p>
+        </div>
+    </div>
+</header>
+
+<!-- Section -->
+<section class="py-5">
+    <div class="container mt-2 col-md-8">
+
+        {% for order in user_orders %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <strong>Order ID:</strong> {{ order.id }}
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Left column: product details -->
+                        <div class="col-md-6 border-end">
+                            <h5>Products</h5>
+                            {% for item in order_items %}
+                                {% if item.order.id == order.id %}
+                                    <p>
+                                        <strong>{{ item.product }}</strong><br>
+                                        ${{ item.price }} × {{ item.quantity }}<br>
+                                    </p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <!-- Right column: summary / actions -->
+                        <div class="col-md-6">
+                            <h5>Summary</h5>
+                            <p><strong>Date:</strong> {{ order.date_ordered }}</p>
+                            <p><strong>Status:</strong> {% if order.shipped %}Completed{% else %}Pending{% endif %}</p>
+                            <p><strong>Total price:</strong> ${{ order.amount_paid }} </p>
+                            <!-- You can also add totals, buttons, etc. -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% include 'footer.html' %}
+
+{% endblock %}

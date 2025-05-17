@@ -5,6 +5,7 @@ from .models import *
 from ecomApp.models import Product
 
 
+
 # checkout view
 def checkout(request):
     cart = Cart(request)
@@ -59,3 +60,12 @@ def process_order(request):
                 del request.session[key]
 
     return redirect('home')
+
+# get user orders for review
+def orders(request):
+    user_orders = Order.objects.filter(user=request.user)
+    order_items = OrderItem.objects.filter(order__in=user_orders)
+
+    context = {'user_orders': user_orders, 'order_items': order_items}
+
+    return render(request, 'orders.html', context=context)
