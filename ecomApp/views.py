@@ -4,6 +4,7 @@ from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from cart.cart import Cart
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
 # index/home view
@@ -68,6 +69,7 @@ def signup_user(request):
     return render(request, 'signup.html', context=context)
 
 # user detail update view
+@login_required(login_url='login')
 def update_user(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
@@ -82,6 +84,7 @@ def update_user(request):
         return render(request, 'update_user.html', context={'form': form})
 
 # user password change view
+@login_required(login_url='login')
 def update_password(request):
     if request.user.is_authenticated:
         current_user = request.user
@@ -101,6 +104,7 @@ def update_password(request):
             return render(request, 'update_password.html', context={'form': form})
 
 # user logout view
+@login_required(login_url='login')
 def logout_user(request):
 
     cart_data = request.session.get('cart')

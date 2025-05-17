@@ -28,7 +28,7 @@
                     <div class="row">
                         <!-- Left column: product details -->
                         <div class="col-md-6 border-end">
-                            <h5>Products</h5>
+                            <h5>Products</h5><br>
                             {% for item in order_items %}
                                 {% if item.order.id == order.id %}
                                     <p>
@@ -41,7 +41,7 @@
 
                         <!-- Right column: summary / actions -->
                         <div class="col-md-6">
-                            <h5>Summary</h5>
+                            <h5>Summary</h5><br>
                             <p><strong>Date:</strong> {{ order.date_ordered }}</p>
                             <p><strong>Status:</strong> {% if order.shipped %}Completed{% else %}Pending{% endif %}</p>
                             <p><strong>Total price:</strong> ${{ order.amount_paid }} </p>

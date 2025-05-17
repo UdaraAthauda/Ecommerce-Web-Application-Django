@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 {% include 'navigation.html' %}
 
 <!-- Header-->
@@ -18,7 +20,7 @@
     <form method="post" action="{% url 'update_user' %}" class="form-control p-4 rounded shadow text-center">
         {% csrf_token %}
         <div class="mb-3">
-            {{ form.as_p }}
+            {{ form|crispy }}
         </div>
         <button type="submit" class="btn btn-success col-2">Update</button>
         &nbsp;

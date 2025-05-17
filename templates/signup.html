@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 {% include 'navigation.html' %}
 
 <!-- Header-->
@@ -9,7 +11,7 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Signup</h1>
-            <p class="lead fw-normal text-white-50 mb-0">create an account of Ecomm</p>
+            <p class="lead fw-normal text-white-50 mb-0">Create an account of Ecomm</p>
         </div>
     </div>
 </header>
@@ -18,7 +20,7 @@
     <form method="post" action="" class="form-control p-4 rounded shadow text-center">
         {% csrf_token %}
         <div class="mb-3">
-            {{ form.as_p }}
+            {{ form|crispy }}
         </div>
         <button type="submit" class="btn btn-success col-2">Signup</button>
         <p>if you have an account <a href="{% url 'login' %}">login here!</a></p>

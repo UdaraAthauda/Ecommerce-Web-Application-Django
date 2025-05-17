@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 {% include 'navigation.html' %}
 
 <!-- Header-->
@@ -9,16 +11,16 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Login</h1>
-            <p class="lead fw-normal text-white-50 mb-0">login to Ecomm</p>
+            <p class="lead fw-normal text-white-50 mb-0">Login to Ecomm</p>
         </div>
     </div>
 </header>
 
-<div class="container mt-4 mb-4" style="max-width: 800px; margin: 0 auto;">
+<div class="container mt-5 mb-5" style="max-width: 800px; margin: 0 auto;">
     <form method="post" action="" class="form-control p-4 rounded shadow text-center">
         {% csrf_token %}
         <div class="mb-3">
-            {{ form.as_p }}
+            {{ form|crispy }}
         </div>
         <button type="submit" class="btn btn-success col-2">Login</button>
         <p>if you don't have an account <a href="{% url 'signup' %}">signup here!</a></p>

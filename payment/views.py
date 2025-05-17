@@ -3,10 +3,10 @@ from cart.cart import Cart
 from ecomApp.models import User
 from .models import *
 from ecomApp.models import Product
-
-
+from django.contrib.auth.decorators import login_required
 
 # checkout view
+@login_required(login_url='login')
 def checkout(request):
     cart = Cart(request)
     products = cart.get_products()
@@ -18,6 +18,7 @@ def checkout(request):
     return render(request, 'checkout.html', context=context)
 
 # order process view
+@login_required(login_url='login')
 def process_order(request):
     shipping_detail = User.objects.get(id=request.user.id)
     cart = Cart(request)
@@ -62,6 +63,7 @@ def process_order(request):
     return redirect('home')
 
 # get user orders for review
+@login_required(login_url='login')
 def orders(request):
     user_orders = Order.objects.filter(user=request.user)
     order_items = OrderItem.objects.filter(order__in=user_orders)
